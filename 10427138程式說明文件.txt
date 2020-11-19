@@ -1,0 +1,24 @@
+10427138程式說明文件
+
+1.開發平台 : Dev C++ 5.11 (並且讓其支持C++ 11)
+2.開發環境 : Windows 10
+3.程式說明 :
+  我使用一個struct如下圖的vector來存放所有讀入檔的資料
+  typedef struct gnode {
+	int ID;
+	int CPUBurst;
+	int ArrivalTime ; 
+	int Priority ; 
+	bool CPU ; // using cpu now? / have used cpu?
+  } GNODE;
+
+  vector<gnode> 所有資料 ;
+
+  並且有結果vector，當中存放甘特圖(一個char vector)與Processes的等待時間與Turnaround Time(一個類似上圖結構的vector)。
+  程式運作上，我皆先以抵達時間作為排序，產成一列資料像是Process不斷且依順序進入CPU般，同時有一個waiting queue(同樣是vector)，依照各個排程法，我將資料在waiting queue中與資料流中調動，達到模擬效果，我的作法中，資料流最前端的資料就是我們正在占用CPU的資料，當一個boolean觸發CPU運作時，資料流前端的Process也開使處理，並減少著CPU burst，如此迴圈運作至資料流與waiting queue都沒有Process時為止。
+
+  執行時，當然也產生一個時間紀錄以方便我進行Time的計算。
+
+4.未完成功能 : RR
+
+  
